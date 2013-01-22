@@ -80,14 +80,18 @@ function Team(num){
 }
 
 function Match(num, red, blue){
-	this.matchNum
+	this.matchNum = num;
+	this.matchStatus = 'pleading';
 	this.rTeam = red;
 	this.bTeam = blue;
 	this.rScore = "N/A";
 	this.bScore = "N/A";
 
-	this.ele = createElement('div', {'class':'match'}, "match: "+num);
+	this.ele = createElement('div', {'class':'match'}, "match: "+this.matchNum);
 	insertElementAt(this.ele, document.getElementById('matches'));
+	
+	this.statusDiv = createElement('div', {'class':'status'}, this.matchStatus);
+	insertElementAt(this.statusDiv, this.ele);
 	
 	this.redDiv = createElement('div', {'class':'redMatches'}, 'Red Teams: ');
 	this.blueDiv = createElement('div', {'class':'blueMatches'}, 'Blue Teams: ');
@@ -126,6 +130,8 @@ function Match(num, red, blue){
 				updateStat(this.bTeam[b], 'lose');
 				lList = lList + " " + this.bTeam[b] + " ";
 			}
+			
+			this.matchStatus = 'Red Won';
 		}
 		else if(red < blue){// blue won
 			for(r in this.rTeam){
@@ -137,6 +143,8 @@ function Match(num, red, blue){
 				updateStat(this.bTeam[b], 'win');
 				wList = wList + " " + this.bTeam[b] + " ";
 			}
+			
+			this.matchStatus = 'Blue Won';
 		}
 		else{// tie
 			for(r in this.rTeam){
@@ -148,13 +156,16 @@ function Match(num, red, blue){
 				updateStat(this.bTeam[b], 'tie');
 				tList = tList + " " + this.bTeam[b];
 			}
+			this.matchStatus = 'Tie';
+			
+			updateElementContent(this.statusDiv,this.matchStatus);
 			updateElementContent(this.rScoreDiv,this.rScore);
 			updateElementContent(this.rScoreDiv,this.bScore);
 			
 			
 			return "ties: " + tList;
 		}
-		
+		updateElementContent(this.statusDiv,this.matchStatus);
 		updateElementContent(this.rScoreDiv,this.rScore);
 		updateElementContent(this.bScoreDiv,this.bScore);
 		
