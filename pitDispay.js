@@ -48,6 +48,10 @@ function addMatch(num, red, blue){
 		AllMatches = new Array();
 	}
 	
+	if(AllMatches[num] != undefined){
+		return "Match: "+num+" exists";
+	}
+	
 	var newTeams = '';
 	
 	for(r in red){
