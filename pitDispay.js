@@ -102,6 +102,13 @@ function Match(num, red, blue){
 	this.statusDiv = createElement('div', {'class':'status'}, this.matchStatus);
 	insertElementAt(this.statusDiv, this.ele);
 	
+	this.formDiv = createElement('form', {'name':"match_"+this.matchNum,'onsubmit':'return false'});
+	insertElementAt(this.formDiv, this.ele);
+	insertElementAt(createElement('input',{'name':'RedScore','type':'number'}),this.formDiv);
+	insertElementAt(createElement('input',{'name':'BlueScore','type':'number'}),this.formDiv);
+	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formDiv);
+	
+	
 	this.redDiv = createElement('div', {'class':'redMatches'}, 'Red Teams: ');
 	this.blueDiv = createElement('div', {'class':'blueMatches'}, 'Blue Teams: ');
 	insertElementAt(this.redDiv,this.ele);

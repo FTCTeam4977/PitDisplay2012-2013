@@ -6,10 +6,21 @@ function NewMatch(){
 	b2 = document.forms['newMatch']['Blue2'].value;
 	
 	if(mn == '' || r1 == '' || r2 == '' || b1 == '' || b2 == ''){
-			alert("da fu");
+			alert("incomplete");
 	}
 	else{
 		alert(addMatch(mn,[r1,r2],[b1,b2]));
 	}
 }
 
+function getScore(match){
+	rs = document.forms["match_"+match]['RedScore'].value;
+	bs = document.forms["match_"+match]['BlueScore'].value;
+	
+	if(rs == '' || bs == ''){
+		alert("incomplete");
+	}
+	else{
+		AllMatches[match].updateMatch(rs,bs);
+	}
+}

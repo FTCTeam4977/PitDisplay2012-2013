@@ -14,6 +14,8 @@
 </head>
 <body>
 	<div id='container'>
+		<div id='matches'>
+		</div>
 		<div id='controls'>
 			<form name='newMatch' onsubmit='return false'>
 				Match Number:<input name='MatchNum' type='number' onkeypress='return validateKeypress(event,2,9000)'><br>
@@ -23,8 +25,6 @@
 				Blue Team 2:<input name='Blue2' type='number' onkeypress='return validateKeypress(event,2,9000)'><br>
 				<button onclick='NewMatch(); return false'>Click</button>
 			</form>
-		</div>
-		<div id='matches'>
 		</div>
 	</div>
 </body>
