@@ -74,14 +74,23 @@ function addMatch(num, red, blue){
 }
 
 function Team(num){
+	this.number = num;
 	this.wins = 0;
 	this.loses = 0;
 	this.ties = 0;
+	
+	this.update = function(){
+		if(typeof AllMatches === 'undefined'){
+			return false;
+		}
+		
+		
+	}
 }
 
 function Match(num, red, blue){
 	this.matchNum = num;
-	this.matchStatus = 'pleading';
+	this.matchStatus = 'waiting for result';
 	this.rTeam = red;
 	this.bTeam = blue;
 	this.rScore = "N/A";
@@ -160,7 +169,7 @@ function Match(num, red, blue){
 			
 			updateElementContent(this.statusDiv,this.matchStatus);
 			updateElementContent(this.rScoreDiv,this.rScore);
-			updateElementContent(this.rScoreDiv,this.bScore);
+			updateElementContent(this.bScoreDiv,this.bScore);
 			
 			
 			return "ties: " + tList;
@@ -176,12 +185,12 @@ function Match(num, red, blue){
 		var inMatch = false;
 		for(r in this.rTeam){
 			if(this.rTeam[r] == num){
-				inMatch = true;
+				inMatch = 1;
 			}
 		}
 		for(b in this.bTeam){
 			if(this.bTeam[b] == num){
-				inMatch = true;
+				inMatch = 0;
 			}
 		}
 		
