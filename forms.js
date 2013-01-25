@@ -14,8 +14,8 @@ function NewMatch(){
 }
 
 function getScore(match){
-	rs = document.forms["match_"+match]['RedScore'].value;
-	bs = document.forms["match_"+match]['BlueScore'].value;
+	rs = document.forms["matchForm_"+match]['RedScore'].value;
+	bs = document.forms["matchForm_"+match]['BlueScore'].value;
 	
 	if(rs == '' || bs == ''){
 		alert("incomplete");

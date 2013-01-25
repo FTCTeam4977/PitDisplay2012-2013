@@ -7,10 +7,23 @@ input{
 	font-size:16px;
 }
 
+.match{
+	border-top:1px #000;
+}
+
 .redMatches{
 }
 
 .blueMatches{
+}
+
+.matchNum{
+	font-size:30px;
+	width:175px;
+}
+
+.matchStatus{
+	
 }
 
 #container{
@@ -18,3 +31,4 @@ input{
 	margin:auto;
 	width:1000px;
 }
+

@@ -6,6 +6,8 @@ function setObject(obj,array){
 	}
 }
 
+
+
 function createElement(type, atr, content, inEle){
 	var ele = document.createElement(type);
 
@@ -25,6 +27,14 @@ function createElement(type, atr, content, inEle){
 	}
 	
 	return ele;
+}
+
+function setElement(ele, atr){
+	for(key in atr){
+		var prp = key;
+		var val = atr[key];
+		ele.setAttribute(prp,val);
+	}
 }
 
 function insertElementAt(ele, parent){

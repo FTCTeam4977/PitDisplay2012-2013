@@ -106,16 +106,16 @@ function Match(num, red, blue){
 	insertElementAt(this.firstRow,this.ele);
 	insertElementAt(this.secondRow,this.ele);
 	
-	this.matchNumEle = createElement('td', {'class':'matchNum'}, "match: "+this.matchNum);
-	this.statusEle = createElement('td', {'class':'status'}, this.matchStatus);
+	this.matchNumEle = createElement('td', {'class':'matchNum'}, "Match: "+this.matchNum);
+	this.statusEle = createElement('td', {'class':'matchStatus'}, this.matchStatus);
 	insertElementAt(this.matchNumEle, this.firstRow);
 	insertElementAt(this.statusEle, this.secondRow);
 	
-	this.formEle = createElement('form', {'name':"match_"+this.matchNum,'onsubmit':'return false'});
+	this.formEle = createElement('form', {'name':"matchForm_"+this.matchNum,'onsubmit':'return false'});
 	insertElementAt(this.formEle, this.firstRow);
 	
-	insertElementAt(createElement('input',{'name':'RedScore','placeholder':'Red Score'}),this.formEle);
-	insertElementAt(createElement('input',{'name':'BlueScore','placeholder':'Blue Score'}),this.formEle);
+	insertElementAt(createElement('input',{'name':'RedScore','placeholder':'Red Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
+	insertElementAt(createElement('input',{'name':'BlueScore','placeholder':'Blue Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
 	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formEle);
 	
 	
@@ -125,11 +125,11 @@ function Match(num, red, blue){
 	insertElementAt(this.blueEle,this.secondRow);
 	
 	for(r in this.rTeam){
-		insertElementAt(createElement('td',{'class':'team','id':"team_"+this.rTeam[r]},this.rTeam[r]), this.redEle);
+		insertElementAt(createElement('td',{'class':'team'},this.rTeam[r]), this.redEle);
 	}
 	
 	for(b in this.bTeam){
-		insertElementAt(createElement('td',{'class':'team','id':"team_"+this.bTeam[b]},this.bTeam[b]), this.blueEle);
+		insertElementAt(createElement('td',{'class':'team'},this.bTeam[b]), this.blueEle);
 	}
 	
 	this.rScoreEle = createElement('td',{'class':'score'},this.rScore);
@@ -158,6 +158,7 @@ function Match(num, red, blue){
 			}
 			
 			this.matchStatus = 'Red Won';
+			setElement(this.statusEle,{'style':'color:red;font-size:27px;'});
 		}
 		else if(red < blue){// blue won
 			for(r in this.rTeam){
@@ -171,6 +172,7 @@ function Match(num, red, blue){
 			}
 			
 			this.matchStatus = 'Blue Won';
+			setElement(this.statusEle,{'style':'color:blue;font-size:27px;'});
 		}
 		else{// tie
 			for(r in this.rTeam){
