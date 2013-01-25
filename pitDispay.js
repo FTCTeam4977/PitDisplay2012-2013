@@ -87,8 +87,6 @@ function Team(num){
 		if(typeof AllMatches === 'undefined'){
 			return false;
 		}
-		
-		
 	}
 }
 
@@ -100,36 +98,44 @@ function Match(num, red, blue){
 	this.rScore = "N/A";
 	this.bScore = "N/A";
 
-	this.ele = createElement('div', {'class':'match'}, "match: "+this.matchNum);
-	insertElementAt(this.ele, document.getElementById('matches'));
+	this.ele = createElement('tr', {'class':'match'});
+	insertElementAt(this.ele, document.getElementById('matchTable'));
 	
-	this.statusDiv = createElement('div', {'class':'status'}, this.matchStatus);
-	insertElementAt(this.statusDiv, this.ele);
+	this.firstRow = createElement('tr',{'class':'firstRow'});
+	this.secondRow = createElement('tr',{'class':'secondRow'});
+	insertElementAt(this.firstRow,this.ele);
+	insertElementAt(this.secondRow,this.ele);
 	
-	this.formDiv = createElement('form', {'name':"match_"+this.matchNum,'onsubmit':'return false'});
-	insertElementAt(this.formDiv, this.ele);
-	insertElementAt(createElement('input',{'name':'RedScore','type':'number'}),this.formDiv);
-	insertElementAt(createElement('input',{'name':'BlueScore','type':'number'}),this.formDiv);
-	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formDiv);
+	this.matchNumEle = createElement('td', {'class':'matchNum'}, "match: "+this.matchNum);
+	this.statusEle = createElement('td', {'class':'status'}, this.matchStatus);
+	insertElementAt(this.matchNumEle, this.firstRow);
+	insertElementAt(this.statusEle, this.secondRow);
+	
+	this.formEle = createElement('form', {'name':"match_"+this.matchNum,'onsubmit':'return false'});
+	insertElementAt(this.formEle, this.firstRow);
+	
+	insertElementAt(createElement('input',{'name':'RedScore','placeholder':'Red Score'}),this.formEle);
+	insertElementAt(createElement('input',{'name':'BlueScore','placeholder':'Blue Score'}),this.formEle);
+	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formEle);
 	
 	
-	this.redDiv = createElement('div', {'class':'redMatches'}, 'Red Teams: ');
-	this.blueDiv = createElement('div', {'class':'blueMatches'}, 'Blue Teams: ');
-	insertElementAt(this.redDiv,this.ele);
-	insertElementAt(this.blueDiv,this.ele);
+	this.redEle = createElement('td', {'class':'redMatches'}, null, createElement('td',null ,'Red Teams: '));
+	this.blueEle = createElement('td', {'class':'blueMatches'}, null, createElement('td',null ,'Blue Teams: '));
+	insertElementAt(this.redEle,this.secondRow);
+	insertElementAt(this.blueEle,this.secondRow);
 	
 	for(r in this.rTeam){
-		insertElementAt(createElement('div',{'class':'team','id':"team_"+this.rTeam[r]},this.rTeam[r]), this.redDiv);
+		insertElementAt(createElement('td',{'class':'team','id':"team_"+this.rTeam[r]},this.rTeam[r]), this.redEle);
 	}
 	
 	for(b in this.bTeam){
-		insertElementAt(createElement('div',{'class':'team','id':"team_"+this.bTeam[b]},this.bTeam[b]), this.blueDiv);
+		insertElementAt(createElement('td',{'class':'team','id':"team_"+this.bTeam[b]},this.bTeam[b]), this.blueEle);
 	}
 	
-	this.rScoreDiv = createElement('div',{'class':'score'},this.rScore);
-	this.bScoreDiv = createElement('div',{'class':'score'},this.bScore);
-	insertElementAt(this.rScoreDiv,this.redDiv);
-	insertElementAt(this.bScoreDiv,this.blueDiv);
+	this.rScoreEle = createElement('td',{'class':'score'},this.rScore);
+	this.bScoreEle = createElement('td',{'class':'score'},this.bScore);
+	insertElementAt(this.rScoreEle,this.redEle);
+	insertElementAt(this.bScoreEle,this.blueEle);
 	
 	
 	this.updateMatch = function(red, blue){
@@ -178,16 +184,16 @@ function Match(num, red, blue){
 			}
 			this.matchStatus = 'Tie';
 			
-			updateElementContent(this.statusDiv,this.matchStatus);
-			updateElementContent(this.rScoreDiv,this.rScore);
-			updateElementContent(this.bScoreDiv,this.bScore);
+			updateElementContent(this.statusEle,this.matchStatus);
+			updateElementContent(this.rScoreEle,this.rScore);
+			updateElementContent(this.bScoreEle,this.bScore);
 			
 			
 			return "ties: " + tList;
 		}
-		updateElementContent(this.statusDiv,this.matchStatus);
-		updateElementContent(this.rScoreDiv,this.rScore);
-		updateElementContent(this.bScoreDiv,this.bScore);
+		updateElementContent(this.statusEle,this.matchStatus);
+		updateElementContent(this.rScoreEle,this.rScore);
+		updateElementContent(this.bScoreEle,this.bScore);
 		
 		return "wins:" + wList + "loses: " + lList;
 	}

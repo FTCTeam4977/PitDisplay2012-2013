@@ -14,16 +14,21 @@
 </head>
 <body>
 	<div id='container'>
+		<h1>Pit Display</h1>
 		<div id='matches'>
+			<table id='matchTable'>
+				
+			</table>
 		</div>
 		<div id='controls'>
 			<form name='newMatch' onsubmit='return false'>
-				Match Number:<input name='MatchNum' type='number' onkeypress='return validateKeypress(event,2,9000)'><br>
-				Red Team 1:<input name='Red1' type='number' onkeypress='return validateKeypress(event,2,9000)'><br>
-				Red Team 2:<input name='Red2' type='number' onkeypress='return validateKeypress(event,2,9000)'><br>
-				Blue Team 1:<input name='Blue1' type='number' onkeypress='return validateKeypress(event,2,9000)'><br>
-				Blue Team 2:<input name='Blue2' type='number' onkeypress='return validateKeypress(event,2,9000)'><br>
-				<button onclick='NewMatch(); return false'>Click</button>
+				<h2>Create a New Match:</h2>
+				Match Number: <input name='MatchNum' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 1'><br>
+				Red Team 1: <input name='Red1' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
+				Red Team 2: <input name='Red2' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
+				Blue Team 1: <input name='Blue1' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
+				Blue Team 2: <input name='Blue2' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
+				<button onclick='NewMatch(); return false'>Add Match</button>
 			</form>
 		</div>
 	</div>
