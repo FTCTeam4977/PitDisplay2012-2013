@@ -148,7 +148,8 @@ function Match(num, red, blue){
 		this.rScore = "Score: " + red;
 		this.bScore = "Score: " + blue;
 		
-		if(red > blue){// red won
+		if(parseInt(red, 10) > parseInt(blue, 10)){// red won
+			alert("Red won: "+red+" > "+blue);
 			for(r in this.rTeam){
 				updateStat(this.rTeam[r], 'win');
 				wList = wList + " " + this.rTeam[r] + " ";
@@ -162,7 +163,8 @@ function Match(num, red, blue){
 			this.matchStatus = 'Red Won';
 			setElement(this.statusEle,{'style':'color:red;font-size:27px;'});
 		}
-		else if(red < blue){// blue won
+		else if(parseInt(red, 10) < parseInt(blue, 10)){// blue won
+			alert("blue won: "+red+" < "+blue);
 			for(r in this.rTeam){
 				updateStat(this.rTeam[r], 'lose');
 				lList = lList + " " + this.rTeam[r] + " ";
@@ -177,6 +179,7 @@ function Match(num, red, blue){
 			setElement(this.statusEle,{'style':'color:blue;font-size:27px;'});
 		}
 		else{// tie
+			alert("tie: "+parseInt(red, 10)+" = "+parseInt(blue, 10));
 			for(r in this.rTeam){
 				updateStat(this.rTeam[r], 'tie');
 				tList = tList + " " + this.rTeam[r];

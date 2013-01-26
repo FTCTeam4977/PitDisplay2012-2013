@@ -9,12 +9,27 @@
 	<script src="object.js" type="text/javascript"></script>
 	<script src="pitDispay.js" type="text/javascript"></script>
 	<script>
-		
+	function toggleHide(ele){
+		if(this.hidding == undefined){
+			this.hidding = false;
+		}
+	
+		if(this.hidding == true){
+			ele.style.display = 'inline';
+			updateElementContent(document.getElementById('CreateMatch'),'Create a New Match:');
+			this.hidding = false;
+		}
+		else{
+			ele.style.display = 'none';
+			updateElementContent(document.getElementById('CreateMatch'),'Click Here to Add a New Match');
+			this.hidding = true;
+		}
+	}
 	</script>
 </head>
 <body>
 	<div id='container'>
-		<h1>Pit Display</h1>
+		<h1>Pit Display: Team 4977</h1>
 		<div id='matches'>
 			<table id='matchTable'>
 				
@@ -22,13 +37,15 @@
 		</div>
 		<div id='controls'>
 			<form name='newMatch' onsubmit='return false'>
-				<h2>Create a New Match:</h2>
-				Match Number: <input name='MatchNum' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 1'><br>
-				Red Team 1: <input name='Red1' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
-				Red Team 2: <input name='Red2' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
-				Blue Team 1: <input name='Blue1' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
-				Blue Team 2: <input name='Blue2' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 9999'><br>
-				<button onclick='NewMatch(); return false'>Add Match</button>
+				<h2 id='CreateMatch' onclick='toggleHide(document.getElementById("hide"))'>Create a New Match:</h2>
+				<div id='hide'>
+					Match Number: <input name='MatchNum' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 1'><br>
+					Red Team 1: <input name='Red1' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 1111'><br>
+					Red Team 2: <input name='Red2' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 1111'><br>
+					Blue Team 1: <input name='Blue1' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 1111'><br>
+					Blue Team 2: <input name='Blue2' onkeypress='return validateKeypress(event,2,9000)' placeholder='ex. 1111'><br>
+					<button onclick='NewMatch(); return false'>Add Match</button>
+				</div>
 			</form>
 		</div>
 	</div>
