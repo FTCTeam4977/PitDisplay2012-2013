@@ -28,6 +28,11 @@ input{
 
 .team{
 	width:60px;
+	padding-left:10px;
+}
+
+.score{
+	width:200px;
 }
 
 .matchNum{
