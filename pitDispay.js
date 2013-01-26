@@ -69,10 +69,12 @@ function addMatch(num, red, blue){
 	}
 	
 	AllMatches[num] = new Match(num, red, blue);
+	document.forms["newMatch"].reset();
 	
 	if(newTeams != ''){
 		return "Teams created:" + newTeams;
 	}
+	
 	
 	return true;
 }
@@ -95,8 +97,8 @@ function Match(num, red, blue){
 	this.matchStatus = 'waiting for result';
 	this.rTeam = red;
 	this.bTeam = blue;
-	this.rScore = "N/A";
-	this.bScore = "N/A";
+	this.rScore = "Score: N/A";
+	this.bScore = "Score: N/A";
 
 	this.ele = createElement('tr', {'class':'match'});
 	insertElementAt(this.ele, document.getElementById('matchTable'));
@@ -111,18 +113,10 @@ function Match(num, red, blue){
 	insertElementAt(this.matchNumEle, this.firstRow);
 	insertElementAt(this.statusEle, this.secondRow);
 	
-	this.formEle = createElement('form', {'name':"matchForm_"+this.matchNum,'onsubmit':'return false'});
-	insertElementAt(this.formEle, this.firstRow);
-	
-	insertElementAt(createElement('input',{'name':'RedScore','placeholder':'Red Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
-	insertElementAt(createElement('input',{'name':'BlueScore','placeholder':'Blue Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
-	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formEle);
-	
-	
-	this.redEle = createElement('td', {'class':'redMatches'}, null, createElement('td',null ,'Red Teams: '));
-	this.blueEle = createElement('td', {'class':'blueMatches'}, null, createElement('td',null ,'Blue Teams: '));
-	insertElementAt(this.redEle,this.secondRow);
-	insertElementAt(this.blueEle,this.secondRow);
+	this.redEle = createElement('td', {'class':'redMatches'}, null, createElement('td'));
+	this.blueEle = createElement('td', {'class':'blueMatches'}, null, createElement('td'));
+	insertElementAt(this.redEle,this.firstRow);
+	insertElementAt(this.blueEle,this.firstRow);
 	
 	for(r in this.rTeam){
 		insertElementAt(createElement('td',{'class':'team'},this.rTeam[r]), this.redEle);
@@ -132,10 +126,18 @@ function Match(num, red, blue){
 		insertElementAt(createElement('td',{'class':'team'},this.bTeam[b]), this.blueEle);
 	}
 	
-	this.rScoreEle = createElement('td',{'class':'score'},this.rScore);
-	this.bScoreEle = createElement('td',{'class':'score'},this.bScore);
-	insertElementAt(this.rScoreEle,this.redEle);
-	insertElementAt(this.bScoreEle,this.blueEle);
+		this.rScoreEle = createElement('td',{'class':'score'},this.rScore);
+		this.bScoreEle = createElement('td',{'class':'score'},this.bScore);
+		insertElementAt(this.rScoreEle,this.redEle);
+		insertElementAt(this.bScoreEle,this.blueEle);
+	
+	this.formEle = createElement('form', {'name':"matchForm_"+this.matchNum,'onsubmit':'return false'});
+	insertElementAt(this.formEle, this.secondRow);
+	
+	insertElementAt(createElement('input',{'name':'RedScore','placeholder':'Red Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
+	insertElementAt(createElement('input',{'name':'BlueScore','placeholder':'Blue Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
+	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formEle);
+	
 	
 	
 	this.updateMatch = function(red, blue){
@@ -143,8 +145,8 @@ function Match(num, red, blue){
 		var lList = "";
 		var tList = "";
 		
-		this.rScore = red;
-		this.bScore = blue;
+		this.rScore = "Score: " + red;
+		this.bScore = "Score: " + blue;
 		
 		if(red > blue){// red won
 			for(r in this.rTeam){
@@ -184,15 +186,18 @@ function Match(num, red, blue){
 				updateStat(this.bTeam[b], 'tie');
 				tList = tList + " " + this.bTeam[b];
 			}
-			this.matchStatus = 'Tie';
 			
+			this.matchStatus = 'Tie';
+			setElement(this.statusEle,{'style':'font-size:27px;'});
+			removeElement(this.formEle);
 			updateElementContent(this.statusEle,this.matchStatus);
 			updateElementContent(this.rScoreEle,this.rScore);
 			updateElementContent(this.bScoreEle,this.bScore);
 			
-			
 			return "ties: " + tList;
 		}
+		
+		removeElement(this.formEle);
 		updateElementContent(this.statusEle,this.matchStatus);
 		updateElementContent(this.rScoreEle,this.rScore);
 		updateElementContent(this.bScoreEle,this.bScore);

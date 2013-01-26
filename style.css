@@ -8,13 +8,26 @@ input{
 }
 
 .match{
-	border-top:1px #000;
+	width:1000px;
+	display:block;
+	border-top:1px #000 solid;
+	padding-bottom:20px;
 }
 
 .redMatches{
+	color:red;
+	font-size:23px;
+	width:400px;
 }
 
 .blueMatches{
+	color:blue;
+	font-size:23px;
+	width:400px;
+}
+
+.team{
+	width:60px;
 }
 
 .matchNum{
