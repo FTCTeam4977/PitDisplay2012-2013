@@ -1,0 +1,26 @@
+<content>
+	<team>
+		<number>4978</number>
+		<wins>12</wins>
+		<loses>5</loses>
+		<ties>0</ties>
+	</team>
+	<team>
+		<number>365</number>
+		<wins>22</wins>
+		<loses>3</loses>
+		<ties>6</ties>
+	</team>
+	<team>
+		<number>4077</number>
+		<wins>213</wins>
+		<loses>1</loses>
+		<ties>-111</ties>
+	</team>
+	<team>
+		<number>5005</number>
+		<wins>0</wins>
+		<loses>0</loses>
+		<ties>0</ties>
+	</team>
+</content>
