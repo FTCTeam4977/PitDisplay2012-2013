@@ -21,8 +21,8 @@ function getNextSibling(n)
 }
 
 function runFile(f){
-	teams = f.data.getElementsByTagName('team');
-	matches = f.data.getElementsByTagName('match');
+	teams = f.getElementsByTagName('team');
+	matches = f.getElementsByTagName('match');
 	
 	for(i=0;i<teams.length;i++){
 		number = getFirstChild(teams[i]);
@@ -77,13 +77,12 @@ function getFile(f){
 		request = new ActiveXObject('Microsoft.XMLHTTP');
 	}
 	
-	request.open('GET', f, true);
+	request.open('GET', f + "?" + (new Date).getTime(), true);
 	request.send();
 	
 	request.onreadystatechange=function(){
 		if(request.readyState==4 && request.status==200){
-				_STORE.data = request.responseXML;
-				runFile(_STORE);
+				runFile(request.responseXML);
 		}
 	}
 }
