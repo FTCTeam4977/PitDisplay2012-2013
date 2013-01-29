@@ -66,7 +66,7 @@ function runFile(f){
 	}
 }
 
-function getFile(f){
+function getFile(f, run){
 	this.data = 'sending request';
 	var _STORE = this;
 	
@@ -82,13 +82,13 @@ function getFile(f){
 	
 	request.onreadystatechange=function(){
 		if(request.readyState==4 && request.status==200){
-				runFile(request.responseXML);
+				run(request.responseXML);
 		}
 	}
 }
 
-function loadFile(f){
-	var request = new getFile(f);
+function loadFile(f, run){
+	var request = new getFile(f, run);
 	AllMatches = undefined;
 	AllTeams = undefined;
 	document.getElementById('matchTable').innerHTML='';
