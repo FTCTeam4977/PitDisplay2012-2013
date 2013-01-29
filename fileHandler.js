@@ -45,8 +45,8 @@ function runFile(f){
 		bScore = getNextSibling(rScore);
 		
 		nValue = number.childNodes[0].nodeValue;
-		rS = rScore.childNodes[0].nodeValue;
-		bS = bScore.childNodes[0].nodeValue;
+		rS = rScore.childNodes[0].nodeValue == "N/A" ? null: rScore.childNodes[0].nodeValue;
+		bS = bScore.childNodes[0].nodeValue == "N/A" ? null: bScore.childNodes[0].nodeValue;
 		
 		redTeams = new Array();
 		blueTeams = new Array();
