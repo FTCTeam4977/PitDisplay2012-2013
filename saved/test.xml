@@ -23,4 +23,17 @@
 		<loses>0</loses>
 		<ties>0</ties>
 	</team>
+	<match>
+		<number>1</number>
+		<red>
+			<t>4978</t>
+			<t>365</t>
+		</red>
+		<blue>
+			<t>4077</t>
+			<t>5005</t>
+		</blue>
+		<rScore>30</rScore>
+		<bScore>13</bScore>
+	</match>
 </content>

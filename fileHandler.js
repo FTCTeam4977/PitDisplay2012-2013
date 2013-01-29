@@ -22,18 +22,50 @@ function getNextSibling(n)
 
 function runFile(f){
 	teams = f.data.getElementsByTagName('team');
+	matches = f.data.getElementsByTagName('match');
+	
 	for(i=0;i<teams.length;i++){
 		number = getFirstChild(teams[i]);
 		wins = getNextSibling(number);
 		loses = getNextSibling(wins);
 		ties = getNextSibling(loses);
 		
-		nValue = number.childNodes[0].nodeValue;
-		wValue = wins.childNodes[0].nodeValue;
-		lValue = loses.childNodes[0].nodeValue;
-		tValue = ties.childNodes[0].nodeValue;
+		nValue = parseInt(number.childNodes[0].nodeValue, 10);
+		wValue = parseInt(wins.childNodes[0].nodeValue, 10);
+		lValue = parseInt(loses.childNodes[0].nodeValue, 10);
+		tValue = parseInt(ties.childNodes[0].nodeValue, 10);
 		addTeam(nValue, wValue, lValue, tValue);
-	} 
+	}
+	
+	for(i=0; i<matches.length; i++){
+		number = getFirstChild(matches[i]);
+		red = getNextSibling(number);
+		blue = getNextSibling(red);
+		rScore = getNextSibling(blue);
+		bScore = getNextSibling(rScore);
+		
+		nValue = number.childNodes[0].nodeValue;
+		rS = rScore.childNodes[0].nodeValue;
+		bS = bScore.childNodes[0].nodeValue;
+		
+		redTeams = new Array();
+		blueTeams = new Array();
+		for(r=0; r<red.childNodes.length; r++){
+			if(red.childNodes[r].nodeType == 1){
+				alert(red.childNodes[r].childNodes[0].nodeValue);
+				redTeams.push(red.childNodes[r].childNodes[0].nodeValue);
+			}
+		}
+		
+		for(b=0; b<blue.childNodes.length; b++){
+			if(blue.childNodes[b].nodeType == 1){
+				alert(blue.childNodes[b].childNodes[0].nodeValue);
+				blueTeams.push(blue.childNodes[b].childNodes[0].nodeValue);
+			}
+		}
+		
+		addMatch(nValue, redTeams, blueTeams, rS, bS);
+	}
 }
 
 function getFile(f){
