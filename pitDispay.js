@@ -1,5 +1,5 @@
 
-function addTeam(num){
+function addTeam(num, w, l, t){
 	if(typeof AllTeams === 'undefined'){
 		AllTeams = new Array();
 	}
@@ -8,6 +8,18 @@ function addTeam(num){
 		return "Team exists";
 	else{
 		AllTeams[num] = new Team(num);
+	}
+	
+	if(wins != undefined){
+		AllTeams[num].wins = w;
+	}
+	
+	if(loses != undefined){
+		AllTeams[num].loses = l;
+	}
+	
+	if(ties != undefined){
+		AllTeams[num].ties = t;
 	}
 	
 	return true;

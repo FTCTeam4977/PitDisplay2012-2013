@@ -24,13 +24,15 @@ function runFile(f){
 	teams = f.data.getElementsByTagName('team');
 	for(i=0;i<teams.length;i++){
 		number = getFirstChild(teams[i]);
-		alert(number.childNodes[0].nodeValue);
 		wins = getNextSibling(number);
-		alert(wins.childNodes[0].nodeValue);
 		loses = getNextSibling(wins);
-		alert(loses.childNodes[0].nodeValue);
 		ties = getNextSibling(loses);
-		alert(ties.childNodes[0].nodeValue);
+		
+		nValue = number.childNodes[0].nodeValue;
+		wValue = wins.childNodes[0].nodeValue;
+		lValue = loses.childNodes[0].nodeValue;
+		tValue = ties.childNodes[0].nodeValue;
+		addTeam(nValue, wValue, lValue, tValue);
 	} 
 }
 
