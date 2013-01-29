@@ -10,15 +10,15 @@ function addTeam(num, w, l, t){
 		AllTeams[num] = new Team(num);
 	}
 	
-	if(wins != undefined){
+	if(w != undefined){
 		AllTeams[num].wins = w;
 	}
 	
-	if(loses != undefined){
+	if(l != undefined){
 		AllTeams[num].loses = l;
 	}
 	
-	if(ties != undefined){
+	if(t != undefined){
 		AllTeams[num].ties = t;
 	}
 	
@@ -47,7 +47,7 @@ function updateStat(num, stat){
 	
 }
 
-function addMatch(num, red, blue){
+function addMatch(num, red, blue, rScore, bScore){
 	if(num == undefined || red == undefined || blue == undefined){
 		return 'Invalid arguments; addMatch arguments: addMatch(int MATCH NUMBER, int array [RED TEAM 1, RED TEAM 2...], int array [BLUE TEAM 1, BLUE TEAM 2...])';
 	}
@@ -82,7 +82,11 @@ function addMatch(num, red, blue){
 	
 	AllMatches[num] = new Match(num, red, blue);
 	document.forms["newMatch"].reset();
-	
+
+	if(rScore != undefined && bScore != undefined){
+		AllMatches[num].updateMatch(rScore, bScore);
+	}
+
 	if(newTeams != ''){
 		return "Teams created:" + newTeams;
 	}
@@ -149,8 +153,6 @@ function Match(num, red, blue){
 	insertElementAt(createElement('input',{'name':'RedScore','placeholder':'Red Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
 	insertElementAt(createElement('input',{'name':'BlueScore','placeholder':'Blue Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
 	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formEle);
-	
-	
 	
 	this.updateMatch = function(red, blue){
 		var wList = "";
@@ -235,5 +237,4 @@ function Match(num, red, blue){
 		
 		return inMatch;
 	}
-	
 }
