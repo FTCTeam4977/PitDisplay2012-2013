@@ -45,21 +45,19 @@ function runFile(f){
 		bScore = getNextSibling(rScore);
 		
 		nValue = number.childNodes[0].nodeValue;
-		rS = rScore.childNodes[0].nodeValue == "N/A" ? null: rScore.childNodes[0].nodeValue;
-		bS = bScore.childNodes[0].nodeValue == "N/A" ? null: bScore.childNodes[0].nodeValue;
+		rS = rScore.childNodes[0].nodeValue == "N/A" ? null: parseInt(rScore.childNodes[0].nodeValue, 10);
+		bS = bScore.childNodes[0].nodeValue == "N/A" ? null: parseInt(bScore.childNodes[0].nodeValue, 10);
 		
 		redTeams = new Array();
 		blueTeams = new Array();
 		for(r=0; r<red.childNodes.length; r++){
 			if(red.childNodes[r].nodeType == 1){
-				alert(red.childNodes[r].childNodes[0].nodeValue);
 				redTeams.push(red.childNodes[r].childNodes[0].nodeValue);
 			}
 		}
 		
 		for(b=0; b<blue.childNodes.length; b++){
 			if(blue.childNodes[b].nodeType == 1){
-				alert(blue.childNodes[b].childNodes[0].nodeValue);
 				blueTeams.push(blue.childNodes[b].childNodes[0].nodeValue);
 			}
 		}
@@ -85,13 +83,13 @@ function getFile(f){
 	request.onreadystatechange=function(){
 		if(request.readyState==4 && request.status==200){
 				_STORE.data = request.responseXML;
-				
+				runFile(_STORE);
 		}
 	}
 }
 
 function loadFile(f){
-	var request = new getFile('saved/test.xml');
+	var request = new getFile(f);
 	AllMatches = undefined;
 	AllTeams = undefined;
 	document.getElementById('matchTable').innerHTML='';

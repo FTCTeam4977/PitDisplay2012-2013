@@ -36,7 +36,10 @@
 				
 			</table>
 		</div>
-		<div id='controls'>
+		<div id='controls' onsubmit='return false'>
+			<form name='load'>
+				<button onclick='file = loadFile("saved/test.xml"); return false'>Load Recent File</button>
+			</form>
 			<form name='newMatch' onsubmit='return false'>
 				<h2 id='CreateMatch' onclick='toggleHide(document.getElementById("hide"))'>Create a New Match:</h2>
 				<div id='hide'>
