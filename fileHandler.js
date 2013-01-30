@@ -20,7 +20,47 @@ function getNextSibling(n)
 	return y;
 }
 
-function runFile(f){
+function displayFileNames(f){
+	document.getElementById('load').innerHTML=f;
+}
+
+function getTEXTFile(f, run){
+	if(window.XMLHttpRequest){
+		request = new XMLHttpRequest();
+	}
+	else{
+		request = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+	
+	request.open('GET', f, true);
+	request.send();
+	
+	request.onreadystatechange=function(){
+		if(request.readyState==4 && request.status==200){
+				run(request.responseText);
+		}
+	}
+}
+
+function getXMLFile(f, run){
+	if(window.XMLHttpRequest){
+		request = new XMLHttpRequest();
+	}
+	else{
+		request = new ActiveXObject('Microsoft.XMLHTTP');
+	}
+	
+	request.open('GET', f + "?" + (new Date).getTime(), true);
+	request.send();
+	
+	request.onreadystatechange=function(){
+		if(request.readyState==4 && request.status==200){
+				run(request.responseXML);
+		}
+	}
+}
+
+function runPitFile(f){
 	teams = f.getElementsByTagName('team');
 	matches = f.getElementsByTagName('match');
 	
@@ -66,33 +106,11 @@ function runFile(f){
 	}
 }
 
-function getFile(f, run){
-	this.data = 'sending request';
-	var _STORE = this;
-	
-	if(window.XMLHttpRequest){
-		request = new XMLHttpRequest();
-	}
-	else{
-		request = new ActiveXObject('Microsoft.XMLHTTP');
-	}
-	
-	request.open('GET', f + "?" + (new Date).getTime(), true);
-	request.send();
-	
-	request.onreadystatechange=function(){
-		if(request.readyState==4 && request.status==200){
-				run(request.responseXML);
-		}
-	}
-}
-
-function loadFile(f, run){
-	var request = new getFile(f, run);
+function loadPitFile(f){
+	var request = new getXMLFile(f, runPitFile);
 	AllMatches = undefined;
 	AllTeams = undefined;
 	document.getElementById('matchTable').innerHTML='';
 	return request;
 }
-
 
