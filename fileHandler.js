@@ -50,7 +50,7 @@ function getXMLFile(f, run){
 		request = new ActiveXObject('Microsoft.XMLHTTP');
 	}
 	
-	request.open('GET', f + "?" + (new Date).getTime(), true);
+	request.open('POST', f, true);
 	request.send();
 	
 	request.onreadystatechange=function(){
