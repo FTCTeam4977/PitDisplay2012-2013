@@ -26,9 +26,13 @@
 			this.hidding = true;
 		}
 	}
+	
+	function init(){
+		getTEXTFile("saved/fileManager.php?task=getFiles",displayFileNames);
+	}
 	</script>
 </head>
-<body>
+<body onload='init()'>
 	<div id='container'>
 		<h1>Pit Display: Team 4977</h1>
 		<div id='matches'>
@@ -44,7 +48,7 @@
 				<div id='load'>
 				
 				</div>
-				<button onclick='file = getTEXTFile("saved/fileManager.php?task=getFiles",displayFileNames); return false'>Scan Save Folder</button>
+				<button onclick='getTEXTFile("saved/fileManager.php?task=getFiles",displayFileNames); return false'>Refresh</button>
 			</form>
 			<h2 onclick='toggleHide(document.getElementById("newMatchForm"), this, "Create a New Match:", "Click Here to Add a New Match")'>Create a New Match:</h2>
 			<form id='newMatchForm' name='newMatch' onsubmit='return false'>
