@@ -24,7 +24,7 @@ function displayFileNames(f){
 	document.getElementById('load').innerHTML=f;
 }
 
-function getTEXTFile(f, run){
+function getFileGET(f, run){
 	if(window.XMLHttpRequest){
 		request = new XMLHttpRequest();
 	}
@@ -42,7 +42,7 @@ function getTEXTFile(f, run){
 	}
 }
 
-function getXMLFile(f, run){
+function getFilePOST(f, run, data){
 	if(window.XMLHttpRequest){
 		request = new XMLHttpRequest();
 	}
@@ -51,11 +51,18 @@ function getXMLFile(f, run){
 	}
 	
 	request.open('POST', f, true);
+	
+	if(data != undefined){
+		request.setRequestHeader('Content-Type', 'text/xml');
+		request.send(data);
+	}
+	
 	request.send();
 	
 	request.onreadystatechange=function(){
 		if(request.readyState==4 && request.status==200){
 				run(request.responseXML);
+				window.data = request.responseXML;
 		}
 	}
 }
@@ -107,7 +114,7 @@ function runPitFile(f){
 }
 
 function loadPitFile(f){
-	var request = new getXMLFile(f, runPitFile);
+	var request = new getFilePOST(f, runPitFile);
 	AllMatches = undefined;
 	AllTeams = undefined;
 	document.getElementById('matchTable').innerHTML='';
