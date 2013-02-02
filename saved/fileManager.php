@@ -17,17 +17,10 @@ switch($task){
 	$root = $newFile->createElement('content');
 	$blank = $newFile->createTextNode('');
 	
-		
 	$newFile->appendChild($root);
 	$root->appendChild($blank);
 	
 	$newFile->save($file.'.xml');
-	
-	case 'saveFile':
-		if($task == 'saveFile'){
-			
-		}
-		
 	case 'getFiles':
 		$fileNames = scandir('.');
 		foreach($fileNames as $fileName){

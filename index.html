@@ -28,7 +28,7 @@
 	}
 	
 	function init(){
-		getFileGET("saved/fileManager.php?task=getFiles",displayFileNames);
+		downloadSavGUI("saved/fileManager.php?task=getFiles",displayFileNames);
 	}
 	</script>
 </head>
@@ -48,7 +48,7 @@
 				<div id='load'>
 				
 				</div>
-				<button onclick='getTEXTFile("saved/fileManager.php?task=getFiles",displayFileNames); return false'>Refresh</button>
+				<button onclick='downloadSavGUI("saved/fileManager.php?task=getFiles",displayFileNames); return false'>Refresh</button>
 			</form>
 			<h2 onclick='toggleHide(document.getElementById("newMatchForm"), this, "Create a New Match:", "Click Here to Add a New Match")'>Create a New Match:</h2>
 			<form id='newMatchForm' name='newMatch' onsubmit='return false'>
