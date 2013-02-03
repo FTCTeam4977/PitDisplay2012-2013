@@ -28,7 +28,7 @@
 	}
 	
 	function init(){
-		downloadSavGUI("saved/fileManager.php?task=getFiles",displayFileNames);
+		saveGUI('getFiles');
 	}
 	</script>
 </head>
@@ -42,13 +42,13 @@
 		</div>
 		<div id='controls' onsubmit='return false'>
 			
-			<h2 onclick='toggleHide(document.getElementById("loadForm"), this, "Load Saved File:", "Click Here to Load a Saved File")'>Load Saved File:</h2>
+			<h2 onclick='toggleHide(document.getElementById("loadForm"), this, "File Management:", "Click Here to Mange Saved Files")'>File Management:</h2>
 			
 			<form id='loadForm' name='load'>
 				<div id='load'>
 				
 				</div>
-				<button onclick='downloadSavGUI("saved/fileManager.php?task=getFiles",displayFileNames); return false'>Refresh</button>
+				<button onclick='saveGUI("getFiles"); return false'>Refresh</button>
 			</form>
 			<h2 onclick='toggleHide(document.getElementById("newMatchForm"), this, "Create a New Match:", "Click Here to Add a New Match")'>Create a New Match:</h2>
 			<form id='newMatchForm' name='newMatch' onsubmit='return false'>

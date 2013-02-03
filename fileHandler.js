@@ -24,7 +24,18 @@ function displayFileNames(f){
 	document.getElementById('load').innerHTML=f;
 }
 
-function downloadSavGUI(f, run){
+function xmlToString(thexml){
+	if(thexml.xml){
+		xmlString = thexml.xml;
+	}
+	else{
+		xmlString = (new XMLSerializer).serializeToString(thexml);
+	}
+	
+	return xmlString;
+}
+
+function saveGUI(task, xml){
 	if(window.XMLHttpRequest){
 		request = new XMLHttpRequest();
 	}
@@ -32,9 +43,27 @@ function downloadSavGUI(f, run){
 		request = new ActiveXObject('Microsoft.XMLHTTP');
 	}
 	
-	request.open('GET', f, true);
-	request.send();
-	
+	switch(task){
+		case 'getFiles':
+			run = displayFileNames;
+			request.open('GET',"saved/saveManager.php?task=getFiles", true);
+			request.send();
+			break;
+			
+		case 'save':
+			run = alert;
+			xmlString = xmlToString(xml);
+			xmlString = escape(xmlString);
+			
+			request.open('POST',"saved/saveManager.php?task=saveFile", true);
+			request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			request.send("xml=" + xmlString); 
+			break;
+		
+		default:
+			return "task not valid";
+	}
+
 	request.onreadystatechange=function(){
 		if(request.readyState==4 && request.status==200){
 				run(request.responseText);
