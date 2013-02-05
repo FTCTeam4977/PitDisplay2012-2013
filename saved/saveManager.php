@@ -25,7 +25,7 @@ switch($task){
 		$newFile->appendChild($root);
 		$root->appendChild($blank);
 	
-		$newFile->save($file.'.xml');
+		$newFile->save($file);
 	
 	case 'getFiles':
 		$fileNames = scandir('.');
@@ -36,7 +36,7 @@ switch($task){
 			$ext = pathinfo($fileName, PATHINFO_EXTENSION);
 			
 			if($ext == 'xml' || $ext == 'XML')
-				echo 'file: <a href="#" onclick="return false" ondblclick="loadPitFile(\'saved/'.$fileName.'\'); return false">'.$fileName.'</a><br> ';
+				echo 'file: <a href="#" onclick="return false" ondblclick=" FM.loadFile(\''.$fileName.'\')">'.$fileName.'</a><br> ';
 		}
 		
 		echo "<br>";

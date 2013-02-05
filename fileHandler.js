@@ -35,7 +35,7 @@ function xmlToString(thexml){
 	return xmlString;
 }
 
-function saveGUI(task, xml){
+function serverTask(task, file, xml){
 	if(window.XMLHttpRequest){
 		request = new XMLHttpRequest();
 	}
@@ -51,13 +51,13 @@ function saveGUI(task, xml){
 			break;
 			
 		case 'save':
-			run = alert;
+			
 			xmlString = xmlToString(xml);
 			xmlString = escape(xmlString);
 			
 			request.open('POST',"saved/saveManager.php?task=saveFile", true);
 			request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			request.send("xml=" + xmlString); 
+			request.send("xml=" + xmlString + "&file=" + file); 
 			break;
 		
 		default:
@@ -69,6 +69,24 @@ function saveGUI(task, xml){
 				run(request.responseText);
 		}
 	}
+}
+
+function GUI(){
+	this.activeFile = null;
+	
+	this.loadFile = function(filename){
+		this.activeFile = filename;
+		loadPitFile("saved/" + filename);	
+	}
+	
+	this.saveFile = function(){
+		if(window.data == null){
+			return "not active file";
+		}
+		serverTask('save',this.activeFile, window.data);
+	}
+	
+	serverTask('getFiles');
 }
 
 function downloadPitFile(f, run, data){
