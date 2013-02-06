@@ -1,7 +1,8 @@
 <?php
 
-if($_POST['xml']){
+if($_POST['xml'] && $_POST['file']){
 	$saveFile = $_POST['xml'];
+	$FN = $_POST['file'];
 }
 
 if($_GET['task'])
@@ -44,7 +45,11 @@ switch($task){
 		break;
 	
 	case 'saveFile':
-		print_r($_POST);
+		$file = new DOMDocument();
+		$doc->formatOutput = true;
+		$file->loadXML($saveFile);
+		echo "file:".$FN;
+		echo $file->save($FN);
 		
 		break;
 		
