@@ -45,15 +45,16 @@ function serverTask(task, file, xml){
 	
 	switch(task){
 		case 'getFiles':
-			run = displayFileNames;
+			var run = displayFileNames;
 			request.open('GET',"saved/saveManager.php?task=getFiles", true);
 			request.send();
 			break;
 			
 		case 'save':
-			
+			var run = alert;
 			xmlString = xmlToString(xml);
 			xmlString = escape(xmlString);
+			
 			
 			request.open('POST',"saved/saveManager.php?task=saveFile", true);
 			request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -83,9 +84,10 @@ function GUI(){
 		if(window.data == null){
 			return "not active file";
 		}
+		savePitFile(window.data);
 		
-		return savePitFile(window.data);
-		//serverTask('save',this.activeFile, window.data);
+		serverTask('save',this.activeFile, window.data);
+		return true
 		
 	}
 	
@@ -142,8 +144,8 @@ function runPitFile(f){
 		bScore = getNextSibling(rScore);
 		
 		nValue = number.childNodes[0].nodeValue;
-		rS = rScore.childNodes[0].nodeValue == "N/A" ? null: parseInt(rScore.childNodes[0].nodeValue, 10);
-		bS = bScore.childNodes[0].nodeValue == "N/A" ? null: parseInt(bScore.childNodes[0].nodeValue, 10);
+		RS = rScore.childNodes[0].nodeValue == "N/A" ? null: parseInt(rScore.childNodes[0].nodeValue, 10);
+		BS = bScore.childNodes[0].nodeValue == "N/A" ? null: parseInt(bScore.childNodes[0].nodeValue, 10);
 		
 		redTeams = new Array();
 		blueTeams = new Array();
@@ -159,7 +161,7 @@ function runPitFile(f){
 			}
 		}
 		
-		addMatch(nValue, redTeams, blueTeams, rS, bS);
+		addMatch(nValue, redTeams, blueTeams, RS, BS);
 	}
 }
 
@@ -208,8 +210,28 @@ function savePitFile(f){
 		var BS = file.createElement('BScore');
 		
 		number.appendChild(file.createTextNode(AllMatches[m].matchNum));
+		RS.appendChild(file.createTextNode(AllMatches[m].rScore));
+		BS.appendChild(file.createTextNode(AllMatches[m].bScore));
+		
+		for(r in AllMatches[m].rTeam){
+			var team = file.createElement('t');
+			
+			team.appendChild(file.createTextNode(AllMatches[m].rTeam[r]));
+			RT.appendChild(team);
+		}
+		
+		for(b in AllMatches[m].rTeam){
+			var team = file.createElement('t');
+			
+			team.appendChild(file.createTextNode(AllMatches[m].bTeam[b]));
+			BT.appendChild(team);
+		}
 		
 		match.appendChild(number);
+		match.appendChild(RT);
+		match.appendChild(BT);
+		match.appendChild(RS);
+		match.appendChild(BS);
 		
 		file.childNodes[0].appendChild(match);
 	}

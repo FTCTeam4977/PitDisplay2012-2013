@@ -80,7 +80,7 @@ function addMatch(num, red, blue, rScore, bScore){
 		}
 	}
 	
-	AllMatches[num] = new Match(num, red, blue);
+	AllMatches[num] = new Match(parseInt(num, 10), red, blue);
 	document.forms["newMatch"].reset();
 
 	if(rScore != undefined && bScore != undefined){
@@ -113,8 +113,8 @@ function Match(num, red, blue){
 	this.matchStatus = 'waiting for result';
 	this.rTeam = red;
 	this.bTeam = blue;
-	this.rScore = "Score: N/A";
-	this.bScore = "Score: N/A";
+	this.rScore = "N/A";
+	this.bScore = "N/A";
 
 	this.ele = createElement('tr', {'class':'match'});
 	insertElementAt(this.ele, document.getElementById('matchTable'));
@@ -142,10 +142,15 @@ function Match(num, red, blue){
 		insertElementAt(createElement('td',{'class':'team'},this.bTeam[b]), this.blueEle);
 	}
 	
-		this.rScoreEle = createElement('td',{'class':'score'},this.rScore);
-		this.bScoreEle = createElement('td',{'class':'score'},this.bScore);
-		insertElementAt(this.rScoreEle,this.redEle);
-		insertElementAt(this.bScoreEle,this.blueEle);
+		this.rScoreHolder = createElement('td',{'class':'score'},'Score: ');
+		this.bScoreHolder = createElement('td',{'class':'score'},'Score: ');
+		insertElementAt(this.rScoreHolder, this.redEle);
+		insertElementAt(this.bScoreHolder, this.blueEle);
+		
+		this.rScoreEle = createElement('span',{'class':'numScore'},this.rScore);
+		this.bScoreEle = createElement('span',{'class':'numScore'},this.bScore);
+		insertElementAt(this.rScoreEle,this.rScoreHolder);
+		insertElementAt(this.bScoreEle,this.bScoreHolder);
 	
 	this.formEle = createElement('form', {'name':"matchForm_"+this.matchNum,'onsubmit':'return false'});
 	insertElementAt(this.formEle, this.secondRow);
@@ -159,8 +164,8 @@ function Match(num, red, blue){
 		var lList = "";
 		var tList = "";
 		
-		this.rScore = "Score: " + red;
-		this.bScore = "Score: " + blue;
+		this.rScore = red;
+		this.bScore = blue;
 		
 		if(parseInt(red, 10) > parseInt(blue, 10)){// red won
 			for(r in this.rTeam){

@@ -48,8 +48,9 @@ switch($task){
 		$file = new DOMDocument();
 		$doc->formatOutput = true;
 		$file->loadXML($saveFile);
-		echo "file:".$FN;
-		echo $file->save($FN);
+		$file->formatOutput = true;
+		$file->save($FN);
+		echo "file saved";
 		
 		break;
 		
