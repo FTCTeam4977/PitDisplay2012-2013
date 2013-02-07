@@ -83,7 +83,10 @@ function GUI(){
 		if(window.data == null){
 			return "not active file";
 		}
-		serverTask('save',this.activeFile, window.data);
+		
+		return savePitFile(window.data);
+		//serverTask('save',this.activeFile, window.data);
+		
 	}
 	
 	serverTask('getFiles');
@@ -166,5 +169,51 @@ function loadPitFile(f){
 	AllTeams = undefined;
 	document.getElementById('matchTable').innerHTML='';
 	return request;
+}
+
+function savePitFile(f){
+	var file = f
+	var root = file.createElement('content');
+	
+	while(file.childNodes[0].firstChild){
+		removeElement(file.childNodes[0].firstChild);
+	}
+	
+	for(t in AllTeams ){
+		var team = file.createElement('team');
+		var number = file.createElement('number');
+		var wins = file.createElement('wins');
+		var loses = file.createElement('loses');
+		var ties = file.createElement('ties');
+		
+		number.appendChild(file.createTextNode(AllTeams[t].number));
+		wins.appendChild(file.createTextNode(AllTeams[t].wins));
+		loses.appendChild(file.createTextNode(AllTeams[t].loses));
+		ties.appendChild(file.createTextNode(AllTeams[t].ties));
+		
+		team.appendChild(number);
+		team.appendChild(wins);
+		team.appendChild(loses);
+		team.appendChild(ties);
+		
+		file.childNodes[0].appendChild(team);
+	}
+	
+	for(m in AllMatches){
+		var match = file.createElement('match');
+		var number = file.createElement('number');
+		var RT = file.createElement('red');
+		var BT = file.createElement('blue');
+		var RS = file.createElement('RScore');
+		var BS = file.createElement('BScore');
+		
+		number.appendChild(file.createTextNode(AllMatches[m].matchNum));
+		
+		match.appendChild(number);
+		
+		file.childNodes[0].appendChild(match);
+	}
+	return true;
+		
 }
 
