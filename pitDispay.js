@@ -95,6 +95,11 @@ function addMatch(num, red, blue, rScore, bScore){
 	return true;
 }
 
+function RemoveMatch(num){
+	removeElement(AllMatches[num].ele);
+	delete AllMatches[num];
+}
+
 function Team(num){
 	this.number = num;
 	this.wins = 0;
