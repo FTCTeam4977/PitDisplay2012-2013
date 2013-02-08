@@ -72,28 +72,6 @@ function serverTask(task, file, xml){
 	}
 }
 
-function GUI(){
-	this.activeFile = null;
-	
-	this.loadFile = function(filename){
-		this.activeFile = filename;
-		loadPitFile("saved/" + filename);	
-	}
-	
-	this.saveFile = function(){
-		if(window.data == null){
-			return "not active file";
-		}
-		savePitFile(window.data);
-		
-		serverTask('save',this.activeFile, window.data);
-		return true
-		
-	}
-	
-	serverTask('getFiles');
-}
-
 function downloadPitFile(f, run, data){
 	if(window.XMLHttpRequest){
 		request = new XMLHttpRequest();
