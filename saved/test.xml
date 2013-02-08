@@ -1,27 +1,45 @@
 <?xml version="1.0"?>
 <content>
   <team>
+    <number>3</number>
+    <wins>0</wins>
+    <loses>0</loses>
+    <ties>1</ties>
+  </team>
+  <team>
+    <number>4</number>
+    <wins>0</wins>
+    <loses>0</loses>
+    <ties>1</ties>
+  </team>
+  <team>
+    <number>23</number>
+    <wins>0</wins>
+    <loses>0</loses>
+    <ties>2</ties>
+  </team>
+  <team>
     <number>365</number>
-    <wins>22</wins>
-    <loses>6</loses>
+    <wins>23</wins>
+    <loses>8</loses>
     <ties>6</ties>
   </team>
   <team>
     <number>4077</number>
-    <wins>216</wins>
-    <loses>1</loses>
+    <wins>218</wins>
+    <loses>2</loses>
     <ties>-111</ties>
   </team>
   <team>
     <number>4978</number>
-    <wins>12</wins>
-    <loses>8</loses>
+    <wins>13</wins>
+    <loses>10</loses>
     <ties>0</ties>
   </team>
   <team>
     <number>5005</number>
-    <wins>3</wins>
-    <loses>0</loses>
+    <wins>5</wins>
+    <loses>1</loses>
     <ties>0</ties>
   </team>
   <match>
@@ -47,7 +65,20 @@
       <t>4077</t>
       <t>5005</t>
     </blue>
-    <RScore>N/A</RScore>
-    <BScore>N/A</BScore>
+    <RScore>5</RScore>
+    <BScore>3</BScore>
+  </match>
+  <match>
+    <number>12</number>
+    <red>
+      <t>3</t>
+      <t>4</t>
+    </red>
+    <blue>
+      <t>23</t>
+      <t>23</t>
+    </blue>
+    <RScore>2</RScore>
+    <BScore>2</BScore>
   </match>
 </content>

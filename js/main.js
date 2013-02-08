@@ -13,12 +13,19 @@ function loadScript(url, callback){
 	head.appendChild(script);
 }
 
-function main(){
-	loadScript('js/tasks.js');
+function loadFiles(){
+	loadScript('js/tasks/file.js');
+	loadScript('js/tasks/pit.js');
+	loadScript('js/tasks/xml.js');
+	loadScript('js/tasks/displayGUI.js');
+	
 	loadScript('js/classes/GUI.js');
 	loadScript('js/classes/match.js');
 	loadScript('js/classes/team.js');
-	
-	
+}
+
+function main(){
 	FM = new GUI();
 }
+
+loadFiles();

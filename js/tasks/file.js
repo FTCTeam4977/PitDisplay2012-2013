@@ -1,40 +1,3 @@
-function getFirstChild(n)
-{
-	y=n.firstChild;
-	
-	while (y.nodeType!=1){
-		y=y.nextSibling;
-	}
-	
-	return y;
-}
-
-function getNextSibling(n)
-{
-	y=n.nextSibling;
-	
-	while (y.nodeType!=1){
-		y=y.nextSibling;
-	}
-	
-	return y;
-}
-
-function displayFileNames(f){
-	document.getElementById('load').innerHTML=f;
-}
-
-function xmlToString(thexml){
-	if(thexml.xml){
-		xmlString = thexml.xml;
-	}
-	else{
-		xmlString = (new XMLSerializer).serializeToString(thexml);
-	}
-	
-	return xmlString;
-}
-
 function serverTask(task, file, xml){
 	if(window.XMLHttpRequest){
 		request = new XMLHttpRequest();
@@ -214,6 +177,6 @@ function savePitFile(f){
 		file.childNodes[0].appendChild(match);
 	}
 	return true;
-		
 }
+
 
