@@ -9,7 +9,7 @@ function serverTask(task, file, xml){
 	switch(task){
 		case 'getFiles':
 			var run = displayFileNames;
-			request.open('GET',"saved/saveManager.php?task=getFiles", true);
+			request.open('GET',"php/saveManager.php?task=getFiles", true);
 			request.send();
 			break;
 			
@@ -19,7 +19,7 @@ function serverTask(task, file, xml){
 			xmlString = escape(xmlString);
 			
 			
-			request.open('POST',"saved/saveManager.php?task=saveFile", true);
+			request.open('POST',"php/saveManager.php?task=saveFile", true);
 			request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			request.send("xml=" + xmlString + "&file=" + file); 
 			break;

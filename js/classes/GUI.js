@@ -3,7 +3,7 @@ function GUI(){
 	
 	this.loadFile = function(filename){
 		this.activeFile = filename;
-		loadPitFile("saved/" + filename);	
+		loadPitFile(filename);	
 	}
 	
 	this.saveFile = function(){

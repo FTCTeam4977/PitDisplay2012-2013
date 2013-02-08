@@ -29,7 +29,7 @@ switch($task){
 		$newFile->save($file);
 	
 	case 'getFiles':
-		$fileNames = scandir('.');
+		$fileNames = scandir('saved/');
 		
 		echo '<h3>saved files:</h3>';
 		
@@ -37,7 +37,7 @@ switch($task){
 			$ext = pathinfo($fileName, PATHINFO_EXTENSION);
 			
 			if($ext == 'xml' || $ext == 'XML')
-				echo 'file: <a href="#" onclick="return false" ondblclick=" FM.loadFile(\''.$fileName.'\')">'.$fileName.'</a><br> ';
+				echo 'file: <a href="#" onclick="return false" ondblclick=" FM.loadFile(\'php/saved/'.$fileName.'\')">'.$fileName.'</a><br> ';
 		}
 		
 		echo "<br>";
