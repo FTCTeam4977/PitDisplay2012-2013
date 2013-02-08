@@ -100,25 +100,19 @@ function RemoveMatch(num){
 	delete AllMatches[num];
 }
 
-
-function GUI(){
-	this.activeFile = null;
-	
-	this.loadFile = function(filename){
-		this.activeFile = filename;
-		loadPitFile("saved/" + filename);	
+function toggleHide(ele, header, str1, str2){
+	if(this.hidding == undefined){
+		this.hidding = false;
 	}
 	
-	this.saveFile = function(){
-		if(window.data == null){
-			return "not active file";
-		}
-		savePitFile(window.data);
-		
-		serverTask('save',this.activeFile, window.data);
-		return true
-		
+	if(this.hidding == true){
+		ele.style.display = 'inline';
+		updateElementContent(header,str1);
+		this.hidding = false;
 	}
-	
-	serverTask('getFiles');
+	else{
+		ele.style.display = 'none';
+		updateElementContent(header,str2);
+		this.hidding = true;
+	}
 }

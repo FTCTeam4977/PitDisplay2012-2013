@@ -9,30 +9,9 @@
 	<script src="object.js" type="text/javascript"></script>
 	<script src="pitDispay.js" type="text/javascript"></script>
 	<script src="fileHandler.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-	function toggleHide(ele, header, str1, str2){
-		if(this.hidding == undefined){
-			this.hidding = false;
-		}
-	
-		if(this.hidding == true){
-			ele.style.display = 'inline';
-			updateElementContent(header,str1);
-			this.hidding = false;
-		}
-		else{
-			ele.style.display = 'none';
-			updateElementContent(header,str2);
-			this.hidding = true;
-		}
-	}
-	
-	function init(){
-		FM = new GUI();
-	}
-	</script>
+	<script src="js/main.js" type="text/javascript"></script>
 </head>
-<body onload='init()'>
+<body onload='main()'>
 	<div id='container'>
 		<h1>Pit Display: Team 4977</h1>
 		<div id='matches'>
