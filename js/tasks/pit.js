@@ -1,5 +1,5 @@
 
-function addTeam(num, w, l, t){
+function addTeam(num){
 	if(typeof AllTeams === 'undefined'){
 		AllTeams = new Array();
 	}
@@ -10,40 +10,15 @@ function addTeam(num, w, l, t){
 		AllTeams[num] = new Team(num);
 	}
 	
-	if(w != undefined){
-		AllTeams[num].wins = w;
-	}
-	
-	if(l != undefined){
-		AllTeams[num].loses = l;
-	}
-	
-	if(t != undefined){
-		AllTeams[num].ties = t;
-	}
-	
 	return true;
 }
 
-function updateTeamStat(num, stat){
+function updateTeamStat(num){
 	if(AllTeams[num] == undefined)
-		return "Team exists";
+		return "Team does not exist";
 	
-	var team = AllTeams[num];
-	switch(stat){
-		case 0:
-		case 'win':
-			team.wins = team.wins + 1;
-			break;
-		case 1:
-		case 'lose':
-			team.loses = team.loses + 1;
-			break;
-		case 3:
-		case 'tie':
-			team.ties = team.ties + 1;
-			break;
-	}
+	AllTeams[num].update();
+	return true;
 	
 }
 
@@ -125,10 +100,11 @@ function NewMatch(){
 	b2 = document.forms['newMatch']['Blue2'].value;
 	
 	if(mn == '' || r1 == '' || r2 == '' || b1 == '' || b2 == ''){
-			alert("incomplete");
+			return false
 	}
 	else{
-		alert(addMatch(mn,[r1,r2],[b1,b2]));
+		addMatch(mn,[r1,r2],[b1,b2]);
+		return true;
 	}
 }
 

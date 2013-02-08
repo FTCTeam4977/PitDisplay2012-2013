@@ -60,12 +60,10 @@ function Match(num, red, blue){
 		
 		if(parseInt(red, 10) > parseInt(blue, 10)){// red won
 			for(r in this.rTeam){
-				updateTeamStat(this.rTeam[r], 'win');
 				wList = wList + " " + this.rTeam[r] + " ";
 			}
 			
 			for(b in this.bTeam){
-				updateTeamStat(this.bTeam[b], 'lose');
 				lList = lList + " " + this.bTeam[b] + " ";
 			}
 			
@@ -76,12 +74,10 @@ function Match(num, red, blue){
 		}
 		else if(parseInt(red, 10) < parseInt(blue, 10)){// blue won
 			for(r in this.rTeam){
-				updateTeamStat(this.rTeam[r], 'lose');
 				lList = lList + " " + this.rTeam[r] + " ";
 			}
 			
 			for(b in this.bTeam){
-				updateTeamStat(this.bTeam[b], 'win');
 				wList = wList + " " + this.bTeam[b] + " ";
 			}
 			
@@ -92,12 +88,10 @@ function Match(num, red, blue){
 		}
 		else{// tie
 			for(r in this.rTeam){
-				updateTeamStat(this.rTeam[r], 'tie');
 				tList = tList + " " + this.rTeam[r];
 			}
 			
 			for(b in this.bTeam){
-				updateTeamStat(this.bTeam[b], 'tie');
 				tList = tList + " " + this.bTeam[b];
 			}
 			
