@@ -20,10 +20,13 @@ function Match(num, red, blue){
 	insertElementAt(this.matchNumEle, this.firstRow);
 	insertElementAt(this.statusEle, this.secondRow);
 	
-	this.redEle = createElement('td', {'class':'redMatches'}, null, createElement('td'));
-	this.blueEle = createElement('td', {'class':'blueMatches'}, null, createElement('td'));
+	this.redEle = createElement('td', {'class':'redMatches'});
+	this.blueEle = createElement('td', {'class':'blueMatches'});
+	
 	insertElementAt(this.redEle,this.firstRow);
 	insertElementAt(this.blueEle,this.firstRow);
+	
+	insertElementAt(createElement('button',{'onclick':"removeMatch("+this.matchNum+")"}, 'Remove Match'), this.firstRow);
 	
 	for(r in this.rTeam){
 		insertElementAt(createElement('td',{'class':'team'},this.rTeam[r]), this.redEle);

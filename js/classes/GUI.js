@@ -13,7 +13,7 @@ function GUI(){
 		savePitFile(window.data);
 		
 		serverTask('save',this.activeFile, window.data);
-		return true
+		return true;
 		
 	}
 	

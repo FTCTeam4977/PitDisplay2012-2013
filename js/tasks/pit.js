@@ -70,7 +70,7 @@ function addMatch(num, red, blue, rScore, bScore){
 	return true;
 }
 
-function RemoveMatch(num){
+function removeMatch(num){
 	removeElement(AllMatches[num].ele);
 	delete AllMatches[num];
 }
