@@ -1,5 +1,5 @@
 
-function addTeam(num){
+function addTeam(num, data){
 	if(typeof AllTeams === 'undefined'){
 		AllTeams = new Array();
 	}
@@ -8,6 +8,10 @@ function addTeam(num){
 		return "Team exists";
 	else{
 		AllTeams[num] = new Team(num);
+		
+		if(data != null){
+			AllTeams[num].data = data;
+		}
 	}
 	
 	return true;

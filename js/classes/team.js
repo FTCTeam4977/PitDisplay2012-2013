@@ -5,6 +5,7 @@ function Team(num){
 	this.rWins = 0;
 	this.bLoses = 0;
 	this.ties = 0;
+	this.data = '';
 	
 	this.update = function(){
 		this.number = num;

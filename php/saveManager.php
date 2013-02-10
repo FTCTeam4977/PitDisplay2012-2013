@@ -1,8 +1,10 @@
 <?php
 
 if($_POST['xml'] && $_POST['file']){
+	echo $_POST['xml']." ".$_POST['file'];
 	$saveFile = $_POST['xml'];
-	$FN = $_POST['file'];
+	$path = 'saved/';
+	$FN = $path.$_POST['file'];
 }
 
 if($_GET['task'])
@@ -10,7 +12,7 @@ if($_GET['task'])
 else
 	$task = ' ';
 if($_GET['file'])
-	$file = $_GET['file'];
+	$file = "saved/".$_GET['file'];
 else
 	$file = null;
 
@@ -25,7 +27,6 @@ switch($task){
 	
 		$newFile->appendChild($root);
 		$root->appendChild($blank);
-	
 		$newFile->save($file);
 	
 	case 'getFiles':
@@ -37,7 +38,7 @@ switch($task){
 			$ext = pathinfo($fileName, PATHINFO_EXTENSION);
 			
 			if($ext == 'xml' || $ext == 'XML')
-				echo 'file: <a href="#" onclick="return false" ondblclick=" FM.loadFile(\'php/saved/'.$fileName.'\')">'.$fileName.'</a><br> ';
+				echo 'file: <a href="#" onclick="return false" ondblclick=" FM.loadFile(\''.$fileName.'\')">'.$fileName.'</a><br> ';
 		}
 		
 		echo "<br>";

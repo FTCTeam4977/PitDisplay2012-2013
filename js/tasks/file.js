@@ -7,6 +7,13 @@ function serverTask(task, file, xml){
 	}
 	
 	switch(task){
+		case 'newFile':
+			var run = displayFileNames;
+			alert("php/saveManager.php?task=makeNewFile&file="+file+".xml");
+			request.open('GET',"php/saveManager.php?task=makeNewFile&file="+file+".xml", true);
+			request.send();
+			break;
+			
 		case 'getFiles':
 			var run = displayFileNames;
 			request.open('GET',"php/saveManager.php?task=getFiles", true);
@@ -17,8 +24,6 @@ function serverTask(task, file, xml){
 			var run = alert;
 			xmlString = xmlToString(xml);
 			xmlString = escape(xmlString);
-			
-			
 			request.open('POST',"php/saveManager.php?task=saveFile", true);
 			request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			request.send("xml=" + xmlString + "&file=" + file); 
@@ -43,7 +48,7 @@ function downloadPitFile(f, run, data){
 		request = new ActiveXObject('Microsoft.XMLHTTP');
 	}
 	
-	request.open('GET', f + "?" + (new Date).getTime(), true);
+	request.open('GET', "php/saved/"+f + "?" + (new Date).getTime(), true);
 	
 	if(data != undefined){
 		request.setRequestHeader('Content-Type', 'text/xml');
@@ -66,15 +71,12 @@ function runPitFile(f){
 	
 	for(i=0;i<teams.length;i++){
 		number = getFirstChild(teams[i]);
-		wins = getNextSibling(number);
-		loses = getNextSibling(wins);
-		ties = getNextSibling(loses);
+		data = getNextSibling(number);
 		
 		nValue = parseInt(number.childNodes[0].nodeValue, 10);
-		wValue = parseInt(wins.childNodes[0].nodeValue, 10);
-		lValue = parseInt(loses.childNodes[0].nodeValue, 10);
-		tValue = parseInt(ties.childNodes[0].nodeValue, 10);
-		addTeam(nValue, wValue, lValue, tValue);
+		dValue = data.childNodes[0].nodeValue, 10;
+		
+		addTeam(nValue, dValue);
 	}
 	
 	for(i=0; i<matches.length; i++){
@@ -106,7 +108,7 @@ function runPitFile(f){
 	}
 }
 
-function loadPitFile(f){
+function openPitFile(f){
 	downloadPitFile(f, runPitFile);
 	AllMatches = undefined;
 	AllTeams = undefined;
@@ -115,7 +117,7 @@ function loadPitFile(f){
 }
 
 function savePitFile(f){
-	var file = f
+	var file = f;
 	var root = file.createElement('content');
 	
 	while(file.childNodes[0].firstChild){
@@ -123,23 +125,21 @@ function savePitFile(f){
 	}
 	
 	for(t in AllTeams ){
-		var team = file.createElement('team');
-		var number = file.createElement('number');
-		var wins = file.createElement('wins');
-		var loses = file.createElement('loses');
-		var ties = file.createElement('ties');
 		
-		number.appendChild(file.createTextNode(AllTeams[t].number));
-		wins.appendChild(file.createTextNode(AllTeams[t].wins));
-		loses.appendChild(file.createTextNode(AllTeams[t].loses));
-		ties.appendChild(file.createTextNode(AllTeams[t].ties));
-		
-		team.appendChild(number);
-		team.appendChild(wins);
-		team.appendChild(loses);
-		team.appendChild(ties);
-		
-		file.childNodes[0].appendChild(team);
+		if(AllTeams[t].data != ''){
+			alert('Saving some data!');
+			var team = file.createElement('team');
+			var number = file.createElement('number');
+			var data = file.createElement('data');
+			
+			number.appendChild(file.createTextNode(AllTeams[t].number));
+			data.appendChild(file.createTextNode(AllTeams[t].data));
+			
+			team.appendChild(number);
+			team.appendChild(data);
+			
+			file.childNodes[0].appendChild(team);
+		}		
 	}
 	
 	for(m in AllMatches){
