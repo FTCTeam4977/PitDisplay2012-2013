@@ -17,17 +17,4 @@
     <RScore>34</RScore>
     <BScore>64</BScore>
   </match>
-  <match>
-    <number>2</number>
-    <red>
-      <t>4978</t>
-      <t>365</t>
-    </red>
-    <blue>
-      <t>4077</t>
-      <t>5005</t>
-    </blue>
-    <RScore>5</RScore>
-    <BScore>3</BScore>
-  </match>
 </content>

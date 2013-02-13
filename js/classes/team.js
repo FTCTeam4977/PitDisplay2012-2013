@@ -3,6 +3,8 @@ function Team(num){
 	this.rMatches = [];
 	this.bMatches = [];
 	this.rWins = 0;
+	this.rLoses = 0;
+	this.bWins = 0;
 	this.bLoses = 0;
 	this.ties = 0;
 	this.data = '';

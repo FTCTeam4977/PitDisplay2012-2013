@@ -2,7 +2,8 @@ function GUI(){
 	this.activeFile = null;
 	
 	this.activeFileEle = createElement('spawn',{'id':'activeFile'}, 'N/A');
-	this.saveButtonEle = createElement('button',{'disabled':'false', 'id':'saveButton'},'Save File');
+	this.saveButtonEle = createElement('button',{'disabled':'false', 'id':'saveButton', 'onclick':'FM.saveFile()'},'Save File');
+	this.saveButtonEle = createElement('button',{'id':'newFileButton', 'onclick':'FM.newFile()'},'Create new File');
 	insertElementAt(this.activeFileEle, document.getElementById('active'));
 	insertElementAt(this.saveButtonEle, document.getElementById('loadForm'));
 	
@@ -10,7 +11,7 @@ function GUI(){
 		this.activeFile = filename;
 		this.saveButtonEle.disabled = false;
 		updateElementContent(this.activeFileEle, filename);
-		serverTask('makeNewFile',this.activeFile);
+		serverTask('newFile',this.activeFile);
 		return true;
 	}
 	
