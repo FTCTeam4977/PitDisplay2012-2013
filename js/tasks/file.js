@@ -29,6 +29,12 @@ function serverTask(task, file, xml){
 			request.send("xml=" + xmlString + "&file=" + file); 
 			break;
 		
+		case 'delete':
+			var run = displayFileNames;
+			request.open('GET',"php/saveManager.php?task=deleteFile&file="+file, true);
+			request.send();
+			break;
+		
 		default:
 			return "task not valid";
 	}

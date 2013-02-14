@@ -18,7 +18,6 @@ else
 
 switch($task){
 	case 'makeNewFile':
-	
 		if($file == null)
 			echo 'ERROR: could not save file, name not defined.';
 		$newFile = new DOMDocument();
@@ -53,6 +52,10 @@ switch($task){
 		$file->save($FN);
 		echo "file saved";
 		
+		break;
+		
+	case 'deleteFile':
+		unlink($file);
 		break;
 		
 	default:
