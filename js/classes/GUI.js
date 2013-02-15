@@ -21,7 +21,7 @@ function GUI(){
 		this.saveButtonEle.disabled = false;
 		this.deleteButtonEle.disabled = false;
 		updateElementContent(this.activeFileEle, this.activeFile);
-		serverTask('newFile',this.activeFile);
+		serverTask('newFile',filename);
 		document.forms["load"].reset();
 		return true;
 	}
