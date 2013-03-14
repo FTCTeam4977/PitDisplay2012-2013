@@ -100,14 +100,16 @@ function NewMatch(){
 	mn = document.forms['newMatch']['MatchNum'].value;
 	r1 = document.forms['newMatch']['Red1'].value;
 	r2 = document.forms['newMatch']['Red2'].value;
+	r3 = document.forms['newMatch']['Red3'].value;
 	b1 = document.forms['newMatch']['Blue1'].value;
 	b2 = document.forms['newMatch']['Blue2'].value;
+	b3 = document.forms['newMatch']['Blue3'].value;
 	
-	if(mn == '' || r1 == '' || r2 == '' || b1 == '' || b2 == ''){
+	if(mn == '' || r1 == '' || r2 == '' || r3 == '' || b1 == '' || b2 == '' || b3 == ''){
 			return false
 	}
 	else{
-		addMatch(mn,[r1,r2],[b1,b2]);
+		addMatch(mn,[r1,r2,r3],[b1,b2,b3]);
 		return true;
 	}
 }

@@ -53,6 +53,10 @@ function Match(num, red, blue){
 	insertElementAt(createElement('input',{'name':'BlueScore','placeholder':'Blue Score','onkeypress':'return validateKeypress(event,2,9000)'}),this.formEle);
 	insertElementAt(createElement('button',{'onclick':"getScore("+this.matchNum+")"},'submit score'),this.formEle);
 	
+	this.isCompleted = function(){
+		return this.rScore == "N/A" || this.bScore == "N/A";
+	}
+	
 	this.updateMatch = function(red, blue){
 		var wList = "";
 		var lList = "";
